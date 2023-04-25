@@ -1,0 +1,16 @@
+const { chromium } = require('playwright');
+
+(async () => {
+    //function code
+    const browser = await chromium.launch({ headless: false, slowMo: 100 });
+    const page = await browser.newPage();
+    await page.goto('https://the-internet.herokuapp.com/forgot_password');
+
+    // email object
+    const email = await page.$('#email');
+
+    //delay: used to simulate rea user speed typing
+    await email.type('email@test.com', { delay: 50 });
+    await browser.close();
+
+})();
